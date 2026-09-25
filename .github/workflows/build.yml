@@ -63,7 +63,9 @@ jobs:
       - name: Attach to the release
         env: { GH_TOKEN: '${{ github.token }}' }
         run: |
-          prerelease=""; case "${GITHUB_REF_NAME}" in *-*) prerelease="--prerelease";; esac
+          # the version is upstream's plus our package revision (v2.1.20260913-1), so a hyphen alone is no
+          # pre-release; only an alpha/beta/rc/pre suffix is
+          prerelease=""; case "${GITHUB_REF_NAME}" in *-alpha*|*-beta*|*-rc*|*-pre*) prerelease="--prerelease";; esac
           gh release create "${GITHUB_REF_NAME}" --repo "${GITHUB_REPOSITORY}" \
             --title "OpenTyrian ${GITHUB_REF_NAME}" --generate-notes $prerelease out/*.zip || \
           gh release upload "${GITHUB_REF_NAME}" --repo "${GITHUB_REPOSITORY}" out/*.zip --clobber
