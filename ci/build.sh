@@ -24,7 +24,7 @@ VERSION="${AB_VERSION:-$(sed -n 's/^Version=//p' resources/app.ini | tr -d '\r')
 UPSTREAM_VERSION=$(git -C upstream/opentyrian describe --tags 2>/dev/null || echo "v2.1.20260913")
 JOBS="${JOBS:-$(nproc)}"
 PSC=${AB_PSC_TOOLCHAIN:-/opt/psc}
-MINGW_SDL2=${AB_MINGW_SDL2:-/opt/mingw-sdl2/x86_64-w64-mingw32}
+MINGW_SDL2=${AB_MINGW_SDL2:-/opt/mingw-sdl2}
 
 # The freeware Tyrian 2.1 data, from our own mirror of the file upstream's get_data.sh fetches
 # (https://camanis.net/tyrian/tyrian21.zip) - pinned by its checksum, so a changed file fails the build.
