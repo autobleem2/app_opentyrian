@@ -1,0 +1,6 @@
+[submodule "upstream/opentyrian"]
+	path = upstream/opentyrian
+	url = https://github.com/opentyrian/opentyrian.git
+[submodule "upstream/SDL_net"]
+	path = upstream/SDL_net
+	url = https://github.com/libsdl-org/SDL_net.git

@@ -1,0 +1,41 @@
+diff --git a/src/joystick.c b/src/joystick.c
+index 39eccec..f459e27 100644
+--- a/src/joystick.c
++++ b/src/joystick.c
+@@ -352,6 +352,36 @@ void reset_joystick_assignments(int j)
+ 		}
+ 	}
+ 	
++	// AutoBleem: a pad shaped like the wired Xbox 360 pad (what AutoBleem's virtual pad presents on Linux,
++	// and an XInput pad on Windows) gets the PlayStation Classic layout instead of the first six buttons:
++	// Cross/Triangle fire, Square/Circle change fire, L1/L2 left sidekick, R1/R2 right sidekick,
++	// Select menu, Start pause. In the X360 pad's numbering: A 0, B 1, X 2, Y 3, LB 4, RB 5, Back 6,
++	// Start 7, the triggers on axes 2 and 5 (resting at the bottom of their travel).
++	if (SDL_JoystickNumButtons(joystick[j].handle) >= 8 && SDL_JoystickNumAxes(joystick[j].handle) >= 6)
++	{
++		static const struct { int action; Joystick_assignment_types type; int num; } psc_layout[][2] =
++		{
++			{ { 4, BUTTON, 0 }, { 4, BUTTON, 3 } },  // fire: Cross, Triangle
++			{ { 5, BUTTON, 2 }, { 5, BUTTON, 1 } },  // change fire: Square, Circle
++			{ { 6, BUTTON, 4 }, { 6, AXIS,   2 } },  // left sidekick: L1, L2
++			{ { 7, BUTTON, 5 }, { 7, AXIS,   5 } },  // right sidekick: R1, R2
++			{ { 8, BUTTON, 6 }, { 8, NONE,   0 } },  // menu: Select
++			{ { 9, BUTTON, 7 }, { 9, NONE,   0 } },  // pause: Start
++		};
++
++		for (uint k = 0; k < COUNTOF(psc_layout); k++)
++		{
++			for (uint i = 0; i < 2; i++)
++			{
++				Joystick_assignment *assignment = &joystick[j].assignment[psc_layout[k][i].action][i];
++				assignment->type = psc_layout[k][i].type;
++				assignment->num = psc_layout[k][i].num;
++				assignment->x_axis = false;
++				assignment->negative_axis = false;
++			}
++		}
++	}
++
+ 	joystick[j].analog = false;
+ 	joystick[j].sensitivity = 5;
+ 	joystick[j].threshold = 5;

@@ -1,0 +1,14 @@
+diff --git a/src/config.c b/src/config.c
+index ee5e291..e1d5462 100644
+--- a/src/config.c
++++ b/src/config.c
+@@ -248,7 +248,8 @@ static const char *const opentyrianConfigFilename = "opentyrian.cfg";
+ static void loadOpenTyrianConfig(void)
+ {
+ 	// defaults
+-	fullscreen_display = -1;
++	// AutoBleem: full screen on the first display - an appliance or a console has no desktop to be a window on
++	fullscreen_display = 0;
+ 	set_scaler_by_name("Scale2x");
+ 	memcpy(keySettings, defaultKeySettings, sizeof(keySettings));
+ 	
