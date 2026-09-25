@@ -17,7 +17,8 @@ R1 / R2              Fire right sidekick
 Start                Pause
 Select               Menu
 
-Hold Start + Select to leave the game (on the console, the Pi and the PC stick).
+To leave the game: press Reset on the console, or hold Start + Select (the console, the Pi and the PC
+stick). On Windows: Select for the menu, then Quit Game, then Quit on the title screen.
 The controls can be changed in the game's Setup -> Joystick menu.
 
 
