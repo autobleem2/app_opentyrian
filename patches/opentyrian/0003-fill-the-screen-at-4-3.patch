@@ -1,0 +1,12 @@
+--- a/src/config.c
++++ b/src/config.c
+@@ -250,6 +250,9 @@
+ 	// defaults
+ 	fullscreen_display = -1;
+ 	set_scaler_by_name("Scale2x");
++	// AutoBleem: the picture fills the screen's height at 4:3, the shape Tyrian had on the monitors it was made for -
++	// the integer default left a 960x600 picture framed in black on a 1280x720 screen, like an overscan margin
++	scaling_mode = SCALE_ASPECT_4_3;
+ 	memcpy(keySettings, defaultKeySettings, sizeof(keySettings));
+ 	
+ 	Config *config = &opentyrian_config;
