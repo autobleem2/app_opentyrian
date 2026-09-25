@@ -51,4 +51,9 @@ the RetroBoot 1.2 binary (genderbent's 2019 PSC build, psc only) the Store's psc
   false`, then re-checkout) or the patches do not apply on a Windows checkout synced to the server.
 - **Build on the server**: sync with MSYS2's rsync (excluding `/build_*`, `/dist`), then
   `docker run --rm -u $(id -u):$(id -g) -v $PWD:/src -w /src ghcr.io/autobleem2/autobleem-build:develop ci/build.sh all`.
-- **Not yet run**: on a console, a Pi or the PC stick (the tester checklist).
+- **Releases**: a `v<upstream>-<n>` tag (`v2.1.20260913-1`) builds a GitHub release (a stable one - only
+  alpha/beta/rc/pre suffixes make a pre-release); `master` follows the released commit. The Store gets it by
+  hand: `gh release download <tag>`, `tools/store_item.py` per zip, then autobleem-repo's
+  `repo_publish.sh store <key> dist/store/<key>/*` for psc, rpi, rpi64, pcusb and win. v2.1.20260913-1 went to
+  all five on 2026-09-25, replacing the RetroBoot build in the psc catalog.
+- **Not yet run**: on a console, a Pi or the PC stick (the tester checklist, section 12).
