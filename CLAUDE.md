@@ -33,6 +33,7 @@ the RetroBoot 1.2 binary (genderbent's 2019 PSC build, psc only) the Store's psc
 | `ci/build.sh` | `native|psc|rpi|rpi64|pcusb|win|all` in the autobleem-build image. SDL2_net is compiled by hand (four C files, the same way on every target); OpenTyrian's own Makefile runs with everything on its command line (`PLATFORM`, `TARGET`, `SDL_CPPFLAGS/LDLIBS`, `VCS_IDREV`) |
 | `tools/check_psc_binary.sh` | from the console tools: glibc <= 2.24, GLIBCXX <= 3.4.22, no RPATH (made to accept a C program, which has no GLIBCXX at all) |
 | `tools/check_needed.sh` | every NEEDED / imported DLL is the system's, SDL2's or in `lib/<key>/` |
+| `tools/store_item.py` | a package -> `dist/store/<key>/` with `opentyrian.item.json` (id `app/opentyrian`, the same on every platform) and `opentyrian.png`, for autobleem-repo's `repo_publish.sh store <key> dist/store/<key>/*` |
 
 ## Things to know
 
