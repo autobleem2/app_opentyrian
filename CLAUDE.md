@@ -57,4 +57,6 @@ the RetroBoot 1.2 binary (genderbent's 2019 PSC build, psc only) the Store's psc
   hand: `gh release download <tag>`, `tools/store_item.py` per zip, then autobleem-repo's
   `repo_publish.sh store <key> dist/store/<key>/*` for psc, rpi, rpi64, pcusb and win. v2.1.20260913-1 went to
   all five on 2026-09-25, replacing the RetroBoot build in the psc catalog.
-- **Not yet run**: on a console, a Pi or the PC stick (the tester checklist, section 12).
+- **Not yet run**: on a console, a Pi or the PC stick (the tester checklist, section 12). An early build
+  (-1) was started on a console on 2026-09-25; the fault found there is fixed in -2 (`2ef8ada`, the picture
+  fills the screen at 4:3), which has not run on a console yet.
