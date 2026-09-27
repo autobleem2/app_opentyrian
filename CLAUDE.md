@@ -14,7 +14,8 @@ the RetroBoot 1.2 binary (genderbent's 2019 PSC build, psc only) the Store's psc
   patches/<name>/NNNN-what.patch`, and checking the submodule out clean again.
 - **A package carries its own libraries** in `lib/<key>/` (`Lib=lib/{key}`), except SDL2 (the launcher's
   2.0.14 in `/tmp/lib` on the console and its `SDL2.dll` on Windows, the system's on the Pis and the PC stick),
-  the C library family and the graphics stack. `tools/check_needed.sh` fails the build otherwise.
+  the C library family and the graphics stack. `/opt/ab/tools/check_needed.sh` (the autobleem-build image,
+  APPS-6) fails the build otherwise.
 - **The freeware game data ships**: Tyrian 2.1, from our mirror (`mirror/opentyrian/tyrian21.zip` on the site,
   pinned by sha256 in `ci/build.sh`; published with autobleem-repo's `repo_publish.sh mirror`). Its
   `license.doc` is the original 1995 Epic MegaGames agreement - the freeware status is the author's 2004
@@ -32,8 +33,7 @@ the RetroBoot 1.2 binary (genderbent's 2019 PSC build, psc only) the Store's psc
 | `patches/opentyrian/0003-fill-the-screen-at-4-3.patch` | the scaling mode defaults to `Fit 4:3` (960x720 on a 1280x720 screen) instead of `Integer`, which left a 960x600 picture framed in black like an overscan margin (the owner, 2026-09-25, from `2.1.20260913-2`). An `opentyrian.cfg` saved before keeps its mode (Setup -> Graphics) |
 | `resources/` | `app.ini` (`Exec=bin/{key}/opentyrian`, `Args=-t data`, `Lib=lib/{key}`, no `Startup=` - the launcher's `rc/app_run.sh` starts it, in the App's folder), `readme.txt`, `icon.png` (the 2020 package's: the OpenTyrian icon over Tyrian art) |
 | `ci/build.sh` | `native|psc|rpi|rpi64|pcusb|win|all` in the autobleem-build image. SDL2_net is compiled by hand (four C files, the same way on every target); OpenTyrian's own Makefile runs with everything on its command line (`PLATFORM`, `TARGET`, `SDL_CPPFLAGS/LDLIBS`, `VCS_IDREV`) |
-| `tools/check_psc_binary.sh` | from the console tools: glibc <= 2.24, GLIBCXX <= 3.4.22, no RPATH (made to accept a C program, which has no GLIBCXX at all) |
-| `tools/check_needed.sh` | every NEEDED / imported DLL is the system's, SDL2's or in `lib/<key>/` |
+| `/opt/ab/tools/check_psc_binary.sh`, `/opt/ab/tools/check_needed.sh` (autobleem-build image) | no longer vendored (APPS-6): glibc <= 2.24 / GLIBCXX <= 3.4.22 / no RPATH, and every NEEDED / imported DLL is the system's, SDL2's or in `lib/<key>/` |
 | `tools/store_item.py` | a package -> `dist/store/<key>/` with `opentyrian.item.json` (id `app/opentyrian`, the same on every platform) and `opentyrian.png`, for autobleem-repo's `repo_publish.sh store <key> dist/store/<key>/*` |
 
 ## Things to know

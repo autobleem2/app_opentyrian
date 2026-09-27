@@ -190,15 +190,15 @@ check() { # check <key>: what the program needs, and that it is what the platfor
     case "$key" in
         psc)
             file "$stage/bin/psc/opentyrian" | grep -q 'ELF 32-bit LSB.*ARM'
-            bash tools/check_psc_binary.sh "$stage/bin/psc/opentyrian" "$PSC"
-            bash tools/check_psc_binary.sh "$stage/lib/psc/libSDL2_net-2.0.so.0" "$PSC" ;;
+            bash /opt/ab/tools/check_psc_binary.sh "$stage/bin/psc/opentyrian" "$PSC"
+            bash /opt/ab/tools/check_psc_binary.sh "$stage/lib/psc/libSDL2_net-2.0.so.0" "$PSC" ;;
         rpi) file "$stage/bin/rpi/opentyrian" | grep -q 'ELF 32-bit LSB.*ARM' ;;
         rpi64) file "$stage/bin/rpi64/opentyrian" | grep -q 'ELF 64-bit LSB.*aarch64' ;;
         pcusb) file "$stage/bin/pcusb/opentyrian" | grep -q 'ELF 32-bit LSB.*Intel 80386' ;;
         win) file "$stage/bin/win/opentyrian.exe" | grep -q 'PE32+ executable.*x86-64' ;;
     esac
     # nothing but the base system, SDL2 and our own lib/<key>/
-    bash tools/check_needed.sh "$key" "$stage"
+    bash /opt/ab/tools/check_needed.sh "$key" "$stage"
 }
 
 build_native() {
