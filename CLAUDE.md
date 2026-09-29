@@ -13,7 +13,7 @@ the RetroBoot 1.2 binary (genderbent's 2019 PSC build, psc only) the Store's psc
   applies `patches/<name>/*.patch` there. Make a patch by editing the submodule, `git -C upstream/<name> diff >
   patches/<name>/NNNN-what.patch`, and checking the submodule out clean again.
 - **A package carries its own libraries** in `lib/<key>/` (`Lib=lib/{key}`), except SDL2 (the launcher's
-  2.0.14 in `/tmp/lib` on the console and its `SDL2.dll` on Windows, the system's on the Pis and the PC stick),
+  2.0.18 - our own `autobleem_sdl`, was upstream 2.0.14 until 2026-09-29 - in `/tmp/lib` on the console and its `SDL2.dll` on Windows, the system's on the Pis and the PC stick),
   the C library family and the graphics stack. `/opt/ab/tools/check_needed.sh` (the autobleem-build image,
   APPS-6) fails the build otherwise.
 - **The freeware game data ships**: Tyrian 2.1, from our mirror (`mirror/opentyrian/tyrian21.zip` on the site,
