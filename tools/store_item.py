@@ -38,6 +38,7 @@ def main(argv):
     item = {
         "id": "app/opentyrian",
         "kind": "app",
+        "category": "games",
         "title": "Tyrian (OpenTyrian)",
         "version": version,
         "author": "The OpenTyrian team; Tyrian by Jason Emery",
